@@ -11,6 +11,10 @@
         <package name="com.cxlong.domain"/>
     </typeAliases>
 
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+
     <mappers>
         <package name="com.cxlong.dao"/>
     </mappers>

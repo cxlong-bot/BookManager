@@ -1,7 +1,13 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String basePath = request.getScheme() + "://" +
+            request.getServerName() + ":" + request.getServerPort() +
+            request.getContextPath() + "/";
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="../../">
+    <base href="<%=basePath%>">
 <!--    <meta charset="UTF-8">-->
     <title>图书管理</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,7 +32,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="javascript:void(0);">
-            <img src="public/images/mylogo.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img src="public/images/head.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
             图书管理系统
         </a>
 

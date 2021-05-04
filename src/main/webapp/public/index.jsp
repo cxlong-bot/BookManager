@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
 <!--    <meta charset="UTF-8">-->
-    <base href="<%=basePath%>>">
+    <base href="<%=basePath%>">
     <title>用户登录</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- HTTP 1.1 -->
@@ -24,14 +24,14 @@
 </head>
 <body>
     <div id="login_container" class="container">
-        <form id="login_form" class="form-inline needs-validation" novalidate>
+        <form id="login_form"  class="form-inline needs-validation" novalidate>
             <div class="form-row m-0">
                 <label class="index_title">图书管理</label>
             </div>
 
             <div class="form-row mt-3 col-md-12">
                 <div class="input-group">
-                    <input type="text" name="username" class="form-control" placeholder="请输入用户名" autofocus="autofocus" required pattern="[a-zA-Z]\w{2,19}"/>
+                    <input type="text"  name="username" class="form-control" placeholder="请输入用户名" autofocus="autofocus" required pattern="[a-zA-Z]\w{2,19}"/>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <i class="fas fa-user" aria-hidden="true"></i>
@@ -44,7 +44,7 @@
             </div>
             <div class="form-row mt-3 col-md-12">
                 <div class="input-group">
-                    <input type="password" name="password" class="form-control" placeholder="请输入密码" required pattern="\w{3,20}"/>
+                    <input type="password"  name="password" class="form-control" placeholder="请输入密码" required pattern="\w{3,20}"/>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <i class="fas fa-lock" aria-hidden="true"></i>

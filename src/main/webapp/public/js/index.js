@@ -38,7 +38,7 @@ $(function () {
                 data: dev === true ? JSON.stringify(devLoginData) : $(form).serializeJsonString(),
                 success: function () {
                     showSuccessModal("登录成功", function () {
-                        window.location.href = "public/page/main.html";
+                        window.location.href = "public/page/main.jsp";
                     });
 
                 },

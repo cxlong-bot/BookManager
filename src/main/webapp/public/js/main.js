@@ -4,7 +4,7 @@ function logout(){
         contentType: "application/json",
         success: function (r) {
             showSuccessModal("注销成功", function () {
-                window.location.href = "../index.jsp";
+                window.location.href = "public/index.jsp";
             }, 1500);
         },
         error: function (error) {

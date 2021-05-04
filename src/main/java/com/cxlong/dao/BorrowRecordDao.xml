@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cxlong.dao.BorrowRecordDao">
+    <!--借阅信息结果映射-->
+    <resultMap id="BorrowRecordResult" type="BorrowRecord">
+        <id property="id" column="br_id"/>
+        <result property="bookId" column="br_book_id"/>
+        <result property="studentId" column="br_student_id"/>
+        <result property="startTime" column="br_start_time"/>
+        <result property="endTime" column="br_end_time"/>
+        <result property="createTime" column="br_create_time"/>
+        <association property="book" column="b_id" javaType="Book" resultMap="BookResult"/>
+        <association property="student" column="s_id" javaType="Student" resultMap="StudentResult"/>
+        <association property="classes" column="c_id" javaType="Classes" resultMap="ClassesResult"/>
+    </resultMap>
+    <!--图书结果映射-->
+    <resultMap id="BookResult" type="Book">
+        <id property="id" column="b_id"/>
+        <result property="bookName" column="b_book_name"/>
+        <result property="author" column="b_author"/>
+        <result property="price" column="b_price"/>
+        <result property="createTime" column="b_create_time"/>
+    </resultMap>
+    <!--学生信息结果映射-->
+    <resultMap id="StudentResult" type="Student">
+        <id property="id" column="s_id"/>
+        <result property="studentName" column="s_student_name"/>
+        <result property="studentNo" column="s_student_no"/>
+        <result property="idCard" column="s_id_card"/>
+        <result property="studentEmail" column="s_student_email"/>
+        <result property="classesId" column="s_classes_id"/>
+        <result property="createTime" column="s_create_time"/>
+    </resultMap>
+    <!--班级信息结果映射-->
+    <resultMap id="ClassesResult" type="Classes">
+        <id property="id" column="c_id"/>
+        <result property="classesName" column="c_classes_name"/>
+        <result property="classesGraduateYear" column="c_classes_graduate_year"/>
+        <result property="classesMajor" column="c_classes_major"/>
+        <result property="classesDesc" column="c_classes_desc"/>
+        <result property="createTime" column="c_create_time"/>
+    </resultMap>
+
+    <select id="selectBorrowRecord" resultMap="BorrowRecordResult">
+        select
+        br.id as br_id, br.book_id as br_book_id, br.student_id as br_student_id, br.start_time as br_start_time,
+        br.end_time as br_end_time, br.create_time as br_create_time,
+        b.id as b_id, b.book_name as b_book_name, b.author as b_author, b.price as b_price, b.create_time as
+        b_create_time,
+        s.id as s_id, s.student_name as s_student_name, s.student_no as s_student_no, s.id_card as s_id_card,
+        s.student_email as s_student_email, s.classes_id as s_classes_id, s.create_time as s_create_time,
+        c.id as c_id,c.classes_name as c_classes_name, c.classes_graduate_year as c_classes_graduate_year,
+        c.classes_major as c_classes_major, c.classes_desc as c_classes_desc, c.create_time as c_create_time
+        from borrow_record as br left outer join book as b on br.book_id = b.id
+        left outer join student as s on br.student_id = s.id
+        left outer join classes as c on s.classes_id = c.id
+    </select>
+
+    <insert id="insertBorrowRecord">
+        insert into borrow_record(book_id, student_id, start_time, end_time)
+        values (#{bookId}, #{studentId}, #{startTime}, #{endTime})
+    </insert>
+
+    <select id="selectBorrowRecordById" resultMap="BorrowRecordResult">
+        select
+        br.id as br_id, br.book_id as br_book_id, br.student_id as br_student_id, br.start_time as br_start_time,
+        br.end_time as br_end_time, br.create_time as br_create_time,
+        b.id as b_id, b.book_name as b_book_name, b.author as b_author, b.price as b_price, b.create_time as
+        b_create_time,
+        s.id as s_id, s.student_name as s_student_name, s.student_no as s_student_no, s.id_card as s_id_card,
+        s.student_email as s_student_email, s.classes_id as s_classes_id, s.create_time as s_create_time,
+        c.id as c_id, c.classes_name as c_classes_name, c.classes_graduate_year as c_classes_graduate_year,
+        c.classes_major as c_classes_major, c.classes_desc as c_classes_desc, c.create_time as c_create_time
+        from borrow_record as br left outer join book as b on br.book_id = b.id
+        left outer join student as s on br.student_id = s.id
+        left outer join classes as c on s.classes_id = c.id
+        where br.id = #{id}
+    </select>
+
+    <update id="updateBorrowRecord">
+        update borrow_record set book_id = #{bookId},student_id = #{studentId},
+        start_time = #{startTime}, end_time = #{endTime} where id = #{id}
+    </update>
+
+    <delete id="deleteBorrowRecord">
+        delete from borrow_record where id in 
+        <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

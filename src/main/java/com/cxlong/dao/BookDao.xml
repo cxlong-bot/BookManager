@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cxlong.dao.BookDao">
+    <select id="selectBook" resultType="Book">
+        select id, book_name bookName, author, price, create_time createTime from book
+    </select>
+
+    <select id="selectBookAsDict" resultType="Book">
+        select id as dictionaryTagKey, book_name as dictionaryTagValue,
+        author, price, create_time createTime from book
+    </select>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cxlong.dao.ClassesDao">
+    <select id="selectClasses" resultType="Classes">
+        select id, classes_name as classesName, classes_graduate_year as classesGraduateYear,
+        classes_major as classesMajor, classes_desc as classesDesc, create_time as createTime
+        from classes
+    </select>
+
+    <select id="selectClassesAsDict" resultType="Classes">
+        select id as dictionaryTagKey, classes_name as dictionaryTagValue,
+        classes_graduate_year as classesGraduateYear,
+        classes_major as classesMajor from classes
+    </select>
+
+    <select id="selectClassesById" resultType="Classes">
+        select id, classes_name as classesName, classes_graduate_year as classesGraduateYear,
+        classes_major as classesMajor, classes_desc as classesDesc, create_time as createTime
+        from classes where id = #{id}
+    </select>
+
+    <insert id="insertClasses">
+        insert into classes(classes_name, classes_graduate_year, classes_major, classes_desc)
+        values (#{classesName}, #{classesGraduateYear},#{classesMajor}, #{classesDesc})
+    </insert>
+
+    <update id="updateClasses">
+        update classes set classes_name = #{classesName}, classes_graduate_year = #{classesGraduateYear},
+        classes_major = #{classesMajor}, classes_desc = #{classesDesc} where id = #{id}
+    </update>
+
+    <delete id="deleteClasses">
+        delete from classes where id in
+        <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

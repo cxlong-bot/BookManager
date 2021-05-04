@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cxlong.dao.DictDao">
+    <resultMap id="DictResult" type="DictionaryTag">
+        <result property="dictionaryTagKey" column="dictionary_tag_key"/>
+        <result property="dictionaryTagValue" column="dt_dictionary_tag_value"/>
+    </resultMap>
+    <select id="selectDict" resultMap="DictResult">
+        select concat(d.dictionary_key, dt.dictionary_tag_key) dictionary_tag_key,
+        dt.dictionary_tag_value as dt_dictionary_tag_value
+        from dictionary as d join dictionary_tag as dt
+        on d.id = dt.dictionary_id where d.dictionary_key = #{key}
+    </select>
+</mapper>

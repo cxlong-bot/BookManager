@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cxlong.dao.StudentDao">
+    <select id="selectStudent" resultType="Student">
+        select id,student_name as studentName,id_card as idCard,student_no as studentNo
+        from student where id = #{id}
+    </select>
+
+    <select id="selectStudentAsDict" resultType="Student">
+        select id as dictionaryTagKey,student_name as dictionaryTagValue,
+        id_card as idCard,student_no as studentNo from student where classes_id = #{classesId}
+    </select>
+</mapper>
